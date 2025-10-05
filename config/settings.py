@@ -123,3 +123,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
 }
+
+
+# Custom User Model
+AUTH_USER_MODEL = 'users.User'
+
+# Add Pillow for ImageField support
+# You'll need to install: pip install Pillow
+
+# Email settings (for email verification - optional for now)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # F
