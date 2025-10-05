@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     # Third party
     'rest_framework',
     'corsheaders',
+    'rest_framework.authtoken', 
     # Local apps
     'apps.users',
     'apps.budgets',
