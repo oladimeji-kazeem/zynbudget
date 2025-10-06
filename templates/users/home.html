@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - ZynBudget{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if user.is_authenticated %}
+        <!-- Dashboard for logged-in users -->
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Welcome back, {{ user.get_full_name }}!</h1>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle display-1 text-primary"></i>
+                        <h5 class="card-title mt-3">My Profile</h5>
+                        <p class="card-text">View and manage your profile information</p>
+                        <a href="{% url 'users:profile_page' %}" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-wallet2 display-1 text-success"></i>
+                        <h5 class="card-title mt-3">Budgets</h5>
+                        <p class="card-text">Create and manage your budgets</p>
+                        <a href="#" class="btn btn-success">Manage Budgets</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-graph-up display-1 text-info"></i>
+                        <h5 class="card-title mt-3">Reports</h5>
+                        <p class="card-text">View financial reports and analytics</p>
+                        <a href="#" class="btn btn-info">View Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Landing page for non-authenticated users -->
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Take Control of Your Finances</h1>
+                <p class="lead mb-4">ZynBudget helps you track expenses, create budgets, and achieve your financial goals.</p>
+                <div class="d-grid gap-2 d-md-flex">
+                    <a href="{% url 'users:register_page' %}" class="btn btn-primary btn-lg">Get Started</a>
+                    <a href="{% url 'users:login_page' %}" class="btn btn-outline-primary btn-lg">Login</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="bi bi-piggy-bank text-primary display-6"></i>
+                                <h5 class="mt-2">Smart Budgeting</h5>
+                                <p class="mb-0">Create and manage budgets effortlessly</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="bi bi-graph-up-arrow text-success display-6"></i>
+                                <h5 class="mt-2">Track Progress</h5>
+                                <p class="mb-0">Monitor your spending in real-time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="bi bi-shield-check text-info display-6"></i>
+                                <h5 class="mt-2">Secure & Private</h5>
+                                <p class="mb-0">Your financial data is safe with us</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

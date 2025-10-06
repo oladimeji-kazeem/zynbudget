@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Profile Picture - ZynBudget{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="bi bi-upload"></i> Upload Profile Picture</h3>
+                </div>
+                <div class="card-body text-center">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Current Profile Picture" class="profile-picture mb-3">
+                        <p class="text-muted">Current profile picture</p>
+                    {% else %}
+                        <i class="bi bi-person-circle display-1 text-secondary mb-3"></i>
+                        <p class="text-muted">No profile picture yet</p>
+                    {% endif %}
+                    
+                    <hr>
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            {{ form.profile_picture }}
+                            {% if form.profile_picture.errors %}
+                                <div class="text-danger">{{ form.profile_picture.errors }}</div>
+                            {% endif %}
+                            <small class="form-text text-muted d-block mt-2">
+                                Accepted formats: JPG, PNG, GIF (Max 5MB)
+                            </small>
+                        </div>
+                        
+                        <div class="d-flex gap-2 justify-content-center">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-upload"></i> Upload
+                            </button>
+                            <a href="{% url 'users:profile_page' %}" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
